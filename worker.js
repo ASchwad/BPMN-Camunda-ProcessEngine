@@ -1,6 +1,8 @@
 const axios = require('axios').default;
 const { Client, logger, Variables } = require('camunda-external-task-client-js');
 
+//To execute: node ./worker.js
+
 // configuration for the Client:
 //  - 'baseUrl': url to the Process Engine
 //  - 'logger': utility to automatically log important events
@@ -14,8 +16,8 @@ client.subscribe('get-weather', async function({ task, taskService }) {
   var weather;
   var goodWeather = false;
   const processVariables = new Variables();
-
-  axios.get('https://api.openweathermap.org/data/2.5/weather?q=Munich&appId=d3cd514def11bf6d9cc019fe3fb2e08e')
+  const token = '' //Insert your API Key here
+  axios.get('https://api.openweathermap.org/data/2.5/weather?q=Munich&appId=' + token)
   .then(function (response) {
     // handle success
     // get weather and calculate to celsius
@@ -56,7 +58,7 @@ client.subscribe('get-crypto-info', async function({ task, taskService }) {
   
   const config = {
     headers: {
-      'X-CMC_PRO_API_KEY': '11c322b8-05b8-4370-bb63-52b69ced5873'
+      'X-CMC_PRO_API_KEY': '' //Insert your API Key here
     }
   }
 
